@@ -20,11 +20,7 @@ public class GoBoom {
                 playerCards.add(deck.remove(0));
             }
         }
-
-        // Print the cards for each player
-        for (int i = 0; i < numPlayers; i++) {
-            System.out.println("Player " + (i + 1) + ": " + players.get(i));
-        }
+        displayGameState(players, deck);
     }
 
     private static void initializeDeck(List<String> deck) {
@@ -40,5 +36,17 @@ public class GoBoom {
 
     private static void shuffleDeck(List<String> deck) {
         Collections.shuffle(deck);
+    }
+
+    private static void displayGameState(List<List<String>> players, List<String> deck) {
+        int numPlayers = players.size();
+
+        // Print the cards for each player
+        for (int i = 0; i < numPlayers; i++) {
+            System.out.println("Player " + (i + 1) + ": " + players.get(i));
+        }
+
+        // Print the remaining cards in the deck
+        System.out.println("Deck    : " + deck);
     }
 }
