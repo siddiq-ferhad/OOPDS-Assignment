@@ -12,6 +12,8 @@ public class GoBoom {
         initializeDeck(deck);
         shuffleDeck(deck);
 
+        String firstLeadCard = deck.remove(0);
+
         for (int i = 0; i < numPlayers; i++) {
             List<String> playerCards = new ArrayList<>();
             players.add(playerCards);
@@ -20,7 +22,7 @@ public class GoBoom {
                 playerCards.add(deck.remove(0));
             }
         }
-        displayGameState(players, deck);
+        displayGameState(players, deck, firstLeadCard);
     }
 
     private static void initializeDeck(List<String> deck) {
@@ -38,13 +40,16 @@ public class GoBoom {
         Collections.shuffle(deck);
     }
 
-    private static void displayGameState(List<List<String>> players, List<String> deck) {
+    private static void displayGameState(List<List<String>> players, List<String> deck, String firstLeadCard) {
         int numPlayers = players.size();
 
         // Print the cards for each player
         for (int i = 0; i < numPlayers; i++) {
             System.out.println("Player " + (i + 1) + ": " + players.get(i));
         }
+
+        // Print the first lead card
+        System.out.println("Center  : [" + firstLeadCard + "]");
 
         // Print the remaining cards in the deck
         System.out.println("Deck    : " + deck);
