@@ -7,6 +7,7 @@ public class GoBoom {
         List<String> deck = new ArrayList<>();
         List<List<String>> players = new ArrayList<>();
         int numPlayers = 4;
+        int totalCards = 7;
 
         initializeDeck(deck);
         shuffleDeck(deck);
@@ -15,7 +16,7 @@ public class GoBoom {
             List<String> playerCards = new ArrayList<>();
             players.add(playerCards);
 
-            for (int j = 0; j < 7; j++) {
+            for (int j = 0; j < totalCards; j++) {
                 playerCards.add(deck.remove(0));
             }
         }
@@ -41,4 +42,3 @@ public class GoBoom {
         Collections.shuffle(deck);
     }
 }
-
