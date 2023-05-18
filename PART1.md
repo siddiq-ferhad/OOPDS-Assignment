@@ -2,12 +2,11 @@
 
 ## A. Member Contributions
 
-No | ID         | Name | Task descriptions | Contribution %
--- | ---------- | ---- | ----------------- | --------------
-1  | 1221234567 |      |                   |
-2  |            |      |                   |
-3  |            |      |                   |
-4  |            |      |                   |
+No | ID         | Name                                       | Task descriptions | Contribution %
+-- | ---------- | ------------------------------------------ | ----------------- | --------------
+1  | 1201100550 | MUHAMMAD ILMAN WAJDI BIN JEFFRY FAIZAL     |                   |
+2  | 1211305329 | ALHARBI, ANAS SULAIMAN A                   |                   |
+3  | 1211103095 | SIDDIQ FERHAD BIN KHAIRIL ANUAL            |                   |
 
 
 ## B. Feature Completion
