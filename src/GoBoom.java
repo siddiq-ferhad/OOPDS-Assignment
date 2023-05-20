@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class GoBoom {
     private List<String> deck;           // Store the cards in the deck
@@ -9,6 +10,7 @@ public class GoBoom {
     private int currentPlayer;           // Represent the current player
     private int numPlayers;              // Represent the total number of players
     private int totalCards;              // Represent the amount of cards distributed to each player
+    private Scanner scanner; // Scanner for user input
 
     public GoBoom() {
         deck = new ArrayList<>();
@@ -21,11 +23,15 @@ public class GoBoom {
         shuffleDeck();
         dealCards();
         determineStartingPlayer();
+        scanner = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
         GoBoom game = new GoBoom();
         game.displayGameState();
+        game.play();
+        // Close the scanner after the game is complete
+        game.closeScanner();
     }
 
     private void initializeDeck() {
@@ -74,6 +80,30 @@ public class GoBoom {
             currentPlayer = 4;
         } else if (leadCard.startsWith("10")) {
             currentPlayer = 2;
+        }
+    }
+    
+    public void play() {
+        while (true) {
+            displayGameState();
+
+            System.out.print("> ");
+            String userInput = scanner.nextLine();
+            System.out.println();
+
+            int playerIndex = currentPlayer - 1;
+            List<String> currentPlayerCards = players.get(playerIndex);
+            if (!currentPlayerCards.contains(userInput)) {
+                System.out.println("Invalid card! Please enter a card from your deck.\n");
+                continue;
+            }
+
+            // Play the card
+            currentPlayerCards.remove(userInput);
+            centerDeck.add(userInput);
+
+            // Move to the next player
+            currentPlayer = (currentPlayer % numPlayers) + 1;
         }
     }
 
