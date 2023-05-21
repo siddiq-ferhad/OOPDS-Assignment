@@ -1,3 +1,17 @@
+/*
+No | Feature                                                                         | Completed (Y/N)
+-- | ------------------------------------------------------------------------------- | ---------------
+1  | All cards should be faced up to facilitate checking.                            |        Y
+2  | Start a new game with randomized 52 cards.                                      |        Y
+3  | The first card in the deck is the first lead card and is placed at the center.  |        Y
+4  | The first lead card determines the first player.                                |        Y
+5  | Deal 7 cards to each of the 4 players.                                          |        Y
+6  | All players must follow the suit or rank of the lead card.                      |        Y
+7  | The highest-rank card with the same suit as the lead card wins the trick.       |        Y
+8  | The winner of a trick leads the next card.                                      |        Y
+*/
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,12 +70,12 @@ public class GoBoom {
             // Add an empty list for each player
             players.add(playerCards);
 
-       for (int j = 0; j < totalCards; j++) {
+            for (int j = 0; j < totalCards; j++) {
                 // Deal 7 cards to each player from the deck
                 playerCards.add(deck.remove(0));
             }
         }
-    }     
+    }
 
     private void determineStartingPlayer() {
         String leadCard = centerDeck.get(0).substring(1);
@@ -134,7 +148,7 @@ public class GoBoom {
             centerDeck.clear();
         }
         scanner.close();
-    }        
+    }
 
     private void displayGameState() {
         String trickName = "Trick #" + trickCount;
@@ -160,8 +174,8 @@ public class GoBoom {
         
         // Display the current player's turn
         System.out.println("Turn    : Player" + currentPlayer);
-    }
-    
+    }
+
     private int getRankValue(String rank) {
         switch (rank) {
             // Convert rank to an integer value
