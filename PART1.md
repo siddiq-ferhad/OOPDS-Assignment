@@ -4,9 +4,9 @@
 
 No | ID         | Name                                       | Task descriptions                           | Contribution %
 -- | ---------- | ------------------------------------------ | --------------------------------------------| --------------
-1  | 1201100550 | MUHAMMAD ILMAN WAJDI BIN JEFFRY FAIZAL     | game win conditions                         | 33.3%
-2  | 1211306594 | KHAN ANAS ADNAN                            | randomizing card placement for the players  | 33.3%
-3  | 1211103095 | SIDDIQ FERHAD BIN KHAIRIL ANUAL            | making the user input work and debugging    | 33.3%
+1  | 1201100550 | MUHAMMAD ILMAN WAJDI BIN JEFFRY FAIZAL     | Making the user input work and debugging    | 33.3%
+2  | 1211306594 | KHAN ANAS ADNAN                            | Randomizing card distributions for players  | 33.3%
+3  | 1211103095 | SIDDIQ FERHAD BIN KHAIRIL ANUAL            | Design the game winning condition           | 33.3%
 
 
 ## B. Feature Completion
@@ -27,7 +27,5 @@ No | Feature                                                                    
 
 ## C. Link to Video Presentation
 
-Upload your video presentation to your Google drive or YouTube, then paste the link below. Give your lab lecturer the permission to view the video.
-
-https://link_to_your_video_presentation
+https://youtu.be/GyUQuptXnSE
 
