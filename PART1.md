@@ -2,11 +2,11 @@
 
 ## A. Member Contributions
 
-No | ID         | Name                                       | Task descriptions | Contribution %
--- | ---------- | ------------------------------------------ | ----------------- | --------------
-1  | 1201100550 | MUHAMMAD ILMAN WAJDI BIN JEFFRY FAIZAL     |                   |
-2  | 1211305329 | ALHARBI, ANAS SULAIMAN A                   |                   |
-3  | 1211103095 | SIDDIQ FERHAD BIN KHAIRIL ANUAL            |                   |
+No | ID         | Name                                       | Task descriptions                           | Contribution %
+-- | ---------- | ------------------------------------------ | --------------------------------------------| --------------
+1  | 1201100550 | MUHAMMAD ILMAN WAJDI BIN JEFFRY FAIZAL     | game win conditions                         | 33.3%
+2  | 1211306594 | KHAN ANAS ADNAN                            | randomizing card placement for the players  | 33.3%
+3  | 1211103095 | SIDDIQ FERHAD BIN KHAIRIL ANUAL            | making the user input work and debugging    | 33.3%
 
 
 ## B. Feature Completion
