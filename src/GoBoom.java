@@ -134,7 +134,20 @@ public class GoBoom {
                     currentPlayer = 1;
                 }
             }
-            
+            // Display the winner
+            System.out.println("*** " + winningPlayer + " wins Trick #" + trickCount + " ***\n");
+            int winningPlayerIndex = Integer.parseInt(winningPlayer.substring(6));
+
+            trickCount++;
+
+            // Set the winner as the current player
+            currentPlayer = winningPlayerIndex;
+
+            // Clear the center deck for the next trick
+            centerDeck.clear();
+        }
+        scanner.close();
+    }        
 
     private int getRankValue(String rank) {
         switch (rank) {
