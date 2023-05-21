@@ -69,7 +69,12 @@ public class GoBoom {
             // Add an empty list for each player
             players.add(playerCards);
 
-           
+       for (int j = 0; j < totalCards; j++) {
+                // Deal 7 cards to each player from the deck
+                playerCards.add(deck.remove(0));
+            }
+        }
+    }     
 
     private void determineStartingPlayer() {
         String leadCard = centerDeck.get(0).substring(1);
