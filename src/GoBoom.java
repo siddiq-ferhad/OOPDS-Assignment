@@ -134,46 +134,7 @@ public class GoBoom {
                     currentPlayer = 1;
                 }
             }
-            // Display the winner
-            System.out.println("*** " + winningPlayer + " wins Trick #" + trickCount + " ***\n");
-            int winningPlayerIndex = Integer.parseInt(winningPlayer.substring(6));
-
-            trickCount++;
-
-            // Set the winner as the current player
-            currentPlayer = winningPlayerIndex;
-
-            // Clear the center deck for the next trick
-            centerDeck.clear();
-        }
-        scanner.close();
-    }
-
-    private void displayGameState() {
-        String trickName = "Trick #" + trickCount;
-        System.out.println(trickName);
-
-        for (int i = 0; i < numPlayers; i++) {
-            // Display each player's cards
-            System.out.println("Player " + (i + 1) + ": " + players.get(i));
-        }
-
-        // Display the cards in the center deck
-        System.out.println("Center  : " + centerDeck);
-
-        // Display the remaining cards in the deck
-        System.out.println("Deck    : " + deck);
-
-        // Display the score of each player
-        System.out.print("Score   : ");
-        for (int i = 1; i <= numPlayers; i++) {
-            System.out.print("Player" + i + " = 0" + ((i != numPlayers) ? " | " : ""));
-        }
-        System.out.println();
-        
-        // Display the current player's turn
-        System.out.println("Turn    : Player" + currentPlayer);
-    }
+            
 
     private int getRankValue(String rank) {
         switch (rank) {
