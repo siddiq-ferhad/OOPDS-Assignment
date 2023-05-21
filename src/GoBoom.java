@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class GoBoom {
     private List<String> deck;           // Store the cards in the deck
@@ -8,6 +9,7 @@ public class GoBoom {
     private List<String> centerDeck;     // Store the cards played in the center
     private int currentPlayer;           // Represent the current player
     private int numPlayers;              // Represent the total number of players
+    private int trickCount;              // Represent the current trick count
     private int totalCards;              // Represent the amount of cards distributed to each player
 
     public GoBoom() {
@@ -16,6 +18,7 @@ public class GoBoom {
         centerDeck = new ArrayList<>();
         currentPlayer = 1;
         numPlayers = 4;
+        trickCount = 1;
         totalCards = 7;
         initializeDeck();
         shuffleDeck();
@@ -25,7 +28,7 @@ public class GoBoom {
 
     public static void main(String[] args) {
         GoBoom game = new GoBoom();
-        game.displayGameState();
+        game.play();
     }
 
     private void initializeDeck() {
@@ -77,7 +80,66 @@ public class GoBoom {
         }
     }
 
+    public void play() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (trickCount < 5) {
+            int movesCount = 0;
+            String winningPlayer = null;
+            int highestRank = 0;
+
+            while (movesCount < numPlayers) {
+                displayGameState();
+
+                System.out.print("> ");
+                String playerCard = scanner.nextLine().trim();
+                System.out.println();
+
+                List<String> currentPlayerCards = players.get(currentPlayer - 1);
+
+                if (currentPlayerCards.contains(playerCard) && !centerDeck.contains(playerCard)) {
+                    // Remove the played card from the player's deck
+                    currentPlayerCards.remove(playerCard);
+
+                    // Add the played card to the center deck
+                    centerDeck.add(playerCard);
+
+                    int rankValue = getRankValue(playerCard.substring(1));
+                    // Determine the winner based on the highest ranking card
+                    if (rankValue > highestRank) {
+                        highestRank = rankValue;
+                        winningPlayer = "Player" + currentPlayer;
+                    }
+                    movesCount++;
+                } else {
+                    System.out.println("Invalid card! Please enter a card from your deck.\n");
+                    continue;
+                }
+
+                currentPlayer++;
+                if (currentPlayer > numPlayers) {
+                    currentPlayer = 1;
+                }
+            }
+            // Display the winner
+            System.out.println("*** " + winningPlayer + " wins Trick #" + trickCount + " ***\n");
+            int winningPlayerIndex = Integer.parseInt(winningPlayer.substring(6));
+
+            trickCount++;
+
+            // Set the winner as the current player
+            currentPlayer = winningPlayerIndex;
+
+            // Clear the center deck for the next trick
+            centerDeck.clear();
+        }
+        scanner.close();
+    }
+
     private void displayGameState() {
+        String trickName = "Trick #" + trickCount;
+        System.out.println(trickName);
+
         for (int i = 0; i < numPlayers; i++) {
             // Display each player's cards
             System.out.println("Player " + (i + 1) + ": " + players.get(i));
@@ -95,8 +157,24 @@ public class GoBoom {
             System.out.print("Player" + i + " = 0" + ((i != numPlayers) ? " | " : ""));
         }
         System.out.println();
-
+        
         // Display the current player's turn
         System.out.println("Turn    : Player" + currentPlayer);
+    }
+
+    private int getRankValue(String rank) {
+        switch (rank) {
+            // Convert rank to an integer value
+            case "A":
+                return 14;
+            case "K":
+                return 13;
+            case "Q":
+                return 12;
+            case "J":
+                return 11;
+            default:
+                return Integer.parseInt(rank);
+        }
     }
 }
