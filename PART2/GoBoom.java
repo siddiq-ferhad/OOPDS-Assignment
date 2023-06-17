@@ -26,7 +26,7 @@ public class GoBoom {
         currentPlayer = 1;
         numPlayers = 4;
         trickCount = 1;
-        totalCards = 1;
+        totalCards = 7;
         initializeDeck();
         initializeScore();
         shuffleDeck();
