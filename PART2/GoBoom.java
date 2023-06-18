@@ -196,7 +196,7 @@ public class GoBoom {
                 trickCount++;
             }
         } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("Error detected in input!\n");
+            System.out.println("Please enter a valid card or command. Empty input is not allowed!\n");
             play();
         }
     }
