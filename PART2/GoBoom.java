@@ -149,6 +149,7 @@ public class GoBoom {
                         loadGame();
                         play();
                     } else {
+                        // Check drawn cards for validity
                         if (checkValidity(userInput)) {
                             continue;
                         }
@@ -286,8 +287,8 @@ public class GoBoom {
     }
 
     private void displayGameState() {
-        String trickName = "Trick #" + trickCount + "    (Press h for help)";
-        System.out.println(trickName);
+        // Display the current trick
+        System.out.println("Trick #" + trickCount + "    (Press h for help)");
 
         for (int i = 0; i < numPlayers; i++) {
             // Display each player's cards
