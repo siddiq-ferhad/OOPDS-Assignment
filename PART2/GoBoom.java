@@ -11,7 +11,7 @@ import java.io.IOException;
 public class GoBoom {
     private List<String> deck; // Store the cards in the deck
     private List<List<String>> players; // Store the cards for each player
-    private List<String> centerDeck; // Store the cards played in the center
+    private List<String> center; // Store the cards played in the center
     private List<Integer> playerScores; // Store the score for each player
     private int currentPlayer; // Represent the current player
     private int numPlayers; // Represent the total number of players
@@ -22,7 +22,7 @@ public class GoBoom {
     public GoBoom() {
         deck = new ArrayList<>();
         players = new ArrayList<>();
-        centerDeck = new ArrayList<>();
+        center = new ArrayList<>();
         currentPlayer = 1;
         numPlayers = 4;
         trickCount = 1;
@@ -38,7 +38,6 @@ public class GoBoom {
     public static void main(String[] args) {
         GoBoom game = new GoBoom();
         game.play();
-        // Close the scanner after the game is complete
         game.closeScanner();
     }
 
@@ -65,7 +64,7 @@ public class GoBoom {
         // Shuffle the cards in the deck randomly
         Collections.shuffle(deck);
         // Move the top card from the deck to the center
-        centerDeck.add(deck.remove(0));
+        center.add(deck.remove(0));
     }
 
     private void dealCards() {
@@ -97,7 +96,7 @@ public class GoBoom {
         startingPlayer.put("8", 4);
         startingPlayer.put("Q", 4);
 
-        String leadCard = centerDeck.get(0).substring(1);
+        String leadCard = center.get(0).substring(1);
         currentPlayer = startingPlayer.get(leadCard);
     }
 
@@ -157,11 +156,11 @@ public class GoBoom {
                     // Remove the played card from the player's deck
                     currentPlayerCards.remove(playerCard);
 
-                    // Add the played card to the center deck
-                    centerDeck.add(playerCard);
+                    // Add the played card to the center
+                    center.add(playerCard);
 
                     if (currentPlayerCards.isEmpty()) {
-                        System.out.println("BOOM!! Congrats Player" + currentPlayer + " for becoming the winner!");
+                        System.out.println("BOOM!! Congrats Player" + currentPlayer + " for winning the current round!");
                         System.out.println("Brace yourself, a new round is about to begin!\n");
 
                         updateScores(); // Update the score based on remaining cards
@@ -187,8 +186,8 @@ public class GoBoom {
 
             // Set the winner as the current player
             currentPlayer = winningPlayer;
-            // Clear the center deck for the next trick
-            centerDeck.clear();
+            // Clear the center for the next trick
+            center.clear();
 
             trickCount++;
         }
@@ -212,8 +211,8 @@ public class GoBoom {
         trickCount = 1;
         currentPlayer = 1;
 
-        // Clear the center deck
-        centerDeck.clear();
+        // Clear the center
+        center.clear();
         // Clear the deck
         deck.clear();
         // Clear the players' hands
@@ -262,15 +261,15 @@ public class GoBoom {
     }
 
     private void displayGameState() {
-        String trickName = "Trick #" + trickCount + "   (Press h for help)";
+        String trickName = "Trick #" + trickCount + "    (Press h for help)";
         System.out.println(trickName);
 
         for (int i = 0; i < numPlayers; i++) {
             // Display each player's cards
             System.out.println("Player " + (i + 1) + ": " + players.get(i));
         }
-        // Display the cards in the center deck
-        System.out.println("Center  : " + centerDeck);
+        // Display the cards in the center
+        System.out.println("Center  : " + center);
 
         // Display the remaining cards in the deck
         System.out.println("Deck    : " + deck);
@@ -295,7 +294,7 @@ public class GoBoom {
             for (List<String> playerDeck : players) {
                 writer.write(String.join(",", playerDeck) + "\n");
             }
-            writer.write(String.join(",", centerDeck) + "\n");
+            writer.write(String.join(",", center) + "\n");
             writer.write(String.join(",", deck) + "\n");
             writer.write(currentPlayer + "\n");
             writer.write(trickCount + "\n");
@@ -327,8 +326,8 @@ public class GoBoom {
                 playerDeck.clear();
                 playerDeck.addAll(List.of(scanner.nextLine().split(",")));
             }
-            centerDeck.clear();
-            centerDeck.addAll(List.of(scanner.nextLine().split(",")));
+            center.clear();
+            center.addAll(List.of(scanner.nextLine().split(",")));
 
             deck.clear();
             deck.addAll(List.of(scanner.nextLine().split(",")));
