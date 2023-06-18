@@ -153,6 +153,20 @@ public class GoBoom {
                 String playerCard = userInput;
 
                 if (currentPlayerCards.contains(playerCard)) {
+                    // Check if drawn cards are playable
+                    if (!center.isEmpty()) {
+                        String centerCard = center.get(0);
+                        String centerSuit = centerCard.substring(0, 1);
+                        String centerRank = centerCard.substring(1);
+
+                        String playerSuit = playerCard.substring(0, 1);
+                        String playerRank = playerCard.substring(1);
+
+                        if (!playerSuit.equals(centerSuit) && !playerRank.equals(centerRank)) {
+                            System.out.println("Invalid card! The card suit or rank must match the center card.\n");
+                            continue;
+                        }
+                    }
                     // Remove the played card from the player's deck
                     currentPlayerCards.remove(playerCard);
 
