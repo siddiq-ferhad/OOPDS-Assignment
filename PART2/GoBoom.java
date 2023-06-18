@@ -312,7 +312,7 @@ public class GoBoom {
         String fileName = scanner.nextLine();
 
         try {
-            // Create a new file named "savegame.txt"
+            // Create a new file based on the name given by the user
             File file = new File(fileName);
             FileWriter writer = new FileWriter(file);
 
@@ -325,7 +325,6 @@ public class GoBoom {
             writer.write(currentPlayer + "\n");
             writer.write(trickCount + "\n");
 
-            // Write player scores to the file
             for (int score : playerScores) {
                 writer.write(score + "\n");
             }
@@ -343,7 +342,6 @@ public class GoBoom {
         String fileName = scanner.nextLine();
 
         try {
-            // Read the saved game state from the file
             File file = new File(fileName);
             Scanner scanner = new Scanner(file);
 
