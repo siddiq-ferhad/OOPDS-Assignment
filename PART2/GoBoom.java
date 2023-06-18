@@ -101,110 +101,121 @@ public class GoBoom {
     }
 
     public void play() {
-        while (true) {
-            int movesCount = 0;
-            int winningPlayer = 0;
-            int highestRank = 0;
+        try {
+            while (true) {
+                int movesCount = 0;
+                int winningPlayer = 0;
+                int highestRank = 0;
 
-            while (movesCount < numPlayers) {
-                displayGameState();
+                while (movesCount < numPlayers) {
+                    displayGameState();
 
-                System.out.print("> ");
-                String userInput = scanner.nextLine();
-                System.out.println();
+                    System.out.print("> ");
+                    String userInput = scanner.nextLine();
+                    System.out.println();
 
-                if (userInput.equals("x")) {
-                    System.out.println("Exiting the game... See ya!");
-                    System.exit(0);
-                } else if (userInput.equals("s")) {
-                    System.out.println("Starting a new game...\n");
-                    GoBoom newGame = new GoBoom();
-                    newGame.play();
-                    return;
-                } else if (userInput.equals("d")) {
-                    if (deck.isEmpty()) {
-                        System.out.println("No more cards in the deck!\n");
+                    if (userInput.equals("x")) {
+                        System.out.println("Exiting the game... See ya!");
+                        System.exit(0);
+                    } else if (userInput.equals("s")) {
+                        System.out.println("Starting a new game...\n");
+                        GoBoom newGame = new GoBoom();
+                        newGame.play();
+                        return;
+                    } else if (userInput.equals("d")) {
+                        if (deck.isEmpty()) {
+                            System.out.println("No more cards in the deck!\n");
+                            continue;
+                        }
+                        String drawnCard = deck.remove(0);
+                        List<String> currentPlayerCards = players.get(currentPlayer - 1);
+                        currentPlayerCards.add(drawnCard);
+
+                        System.out.println("Player" + currentPlayer + " draws a card: " + drawnCard + "\n");
                         continue;
-                    }
-                    String drawnCard = deck.remove(0);
-                    List<String> currentPlayerCards = players.get(currentPlayer - 1);
-                    currentPlayerCards.add(drawnCard);
-
-                    System.out.println("Player" + currentPlayer + " draws a card: " + drawnCard + "\n");
-                    continue;
-                } else if (userInput.equals("skip")) {
-                    movesCount++;
-                    currentPlayer = getNextPlayer();
-                    System.out.println("Player" + currentPlayer + " takes the turn.\n");
-                    continue;
-                } else if (userInput.equals("h")) {
-                    displayHelp();
-                    scanner.nextLine();
-                    continue;
-                } else if (userInput.equals("save")) {
-                    saveGame();
-                    continue;
-                } else if (userInput.equals("load")) {
-                    loadGame();
-                    play();
-                }
-
-                List<String> currentPlayerCards = players.get(currentPlayer - 1);
-                String playerCard = userInput;
-
-                if (currentPlayerCards.contains(playerCard)) {
-                    // Check if drawn cards are playable
-                    if (!center.isEmpty()) {
-                        String centerCard = center.get(0);
-                        String centerSuit = centerCard.substring(0, 1);
-                        String centerRank = centerCard.substring(1);
-
-                        String playerSuit = playerCard.substring(0, 1);
-                        String playerRank = playerCard.substring(1);
-
-                        if (!playerSuit.equals(centerSuit) && !playerRank.equals(centerRank)) {
-                            System.out.println("Invalid card! The card suit or rank must match the center card.\n");
+                    } else if (userInput.equals("skip")) {
+                        movesCount++;
+                        currentPlayer = getNextPlayer();
+                        System.out.println("Player" + currentPlayer + " takes the turn.\n");
+                        continue;
+                    } else if (userInput.equals("h")) {
+                        displayHelp();
+                        scanner.nextLine();
+                        continue;
+                    } else if (userInput.equals("save")) {
+                        saveGame();
+                        continue;
+                    } else if (userInput.equals("load")) {
+                        loadGame();
+                        play();
+                    } else {
+                        if (checkValidity(userInput)) {
                             continue;
                         }
                     }
-                    // Remove the played card from the player's deck
-                    currentPlayerCards.remove(playerCard);
+                    List<String> currentPlayerCards = players.get(currentPlayer - 1);
+                    String playerCard = userInput;
 
-                    // Add the played card to the center
-                    center.add(playerCard);
+                    if (currentPlayerCards.contains(playerCard)) {
+                        // Remove the played card from the player's deck
+                        currentPlayerCards.remove(playerCard);
 
-                    if (currentPlayerCards.isEmpty()) {
-                        System.out.println("BOOM!! Congrats Player" + currentPlayer + " for winning the current round!");
-                        System.out.println("Brace yourself, a new round is about to begin!\n");
+                        // Add the played card to the center
+                        center.add(playerCard);
 
-                        updateScores(); // Update the score based on remaining cards
-                        startNewRound(); // Start a new round
-                        return;
+                        if (currentPlayerCards.isEmpty()) {
+                            System.out.println("BOOM!! Congrats Player" + currentPlayer + " for winning the current round!");
+                            System.out.println("Brace yourself, a new round is about to begin!\n");
+
+                            updateScores(); // Update the score based on remaining cards
+                            startNewRound(); // Start a new round
+                            return;
+                        }
+
+                        int rankValue = getRankValue(playerCard.substring(1));
+                        // Determine the winner based on the highest ranking card
+                        if (rankValue > highestRank) {
+                            highestRank = rankValue;
+                            winningPlayer = currentPlayer;
+                        }
+                        movesCount++;
+                    } else {
+                        System.out.println("Invalid card! Please enter a card from your deck.\n");
+                        continue;
                     }
-
-                    int rankValue = getRankValue(playerCard.substring(1));
-                    // Determine the winner based on the highest ranking card
-                    if (rankValue > highestRank) {
-                        highestRank = rankValue;
-                        winningPlayer = currentPlayer;
-                    }
-                    movesCount++;
-                } else {
-                    System.out.println("Invalid card! Please enter a card from your deck.\n");
-                    continue;
+                    currentPlayer = getNextPlayer();
                 }
-                currentPlayer = getNextPlayer();
+                // Display the winner
+                System.out.println("*** Player" + winningPlayer + " wins Trick #" + trickCount + " ***\n");
+
+                // Set the winner as the current player
+                currentPlayer = winningPlayer;
+                // Clear the center for the next trick
+                center.clear();
+
+                trickCount++;
             }
-            // Display the winner
-            System.out.println("*** Player" + winningPlayer + " wins Trick #" + trickCount + " ***\n");
-
-            // Set the winner as the current player
-            currentPlayer = winningPlayer;
-            // Clear the center for the next trick
-            center.clear();
-
-            trickCount++;
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("Error detected in input!\n");
+            play();
         }
+    }
+
+    private boolean checkValidity(String playerCard) {
+        if (!center.isEmpty()) {
+            String centerCard = center.get(0);
+            String centerSuit = centerCard.substring(0, 1);
+            String centerRank = centerCard.substring(1);
+
+            String playerSuit = playerCard.substring(0, 1);
+            String playerRank = playerCard.substring(1);
+
+            if (!playerSuit.equals(centerSuit) && !playerRank.equals(centerRank)) {
+                System.out.println("Invalid card! The card suit or rank must match the center card.\n");
+                return true;
+            }
+        }
+        return false;
     }
 
     private void displayHelp() {
