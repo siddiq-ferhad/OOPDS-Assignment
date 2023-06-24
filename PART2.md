@@ -2,11 +2,11 @@
 
 ## A. Member Contributions
 
-No | ID         | Name                                       | Task descriptions                           | Contribution %
--- | ---------- | ------------------------------------------ | --------------------------------------------| --------------
-1  | 1201100550 | MUHAMMAD ILMAN WAJDI BIN JEFFRY FAIZAL     |                                             | 
-2  | 1211306594 | KHAN ANAS ADNAN                            |                                             | 
-3  | 1211103095 | SIDDIQ FERHAD BIN KHAIRIL ANUAL            |                                             |
+No | ID         | Name                                       | Task descriptions                                                    | Contribution %
+-- | ---------- | ------------------------------------------ | ---------------------------------------------------------------------| --------------
+1  | 1201100550 | MUHAMMAD ILMAN WAJDI BIN JEFFRY FAIZAL     | Manage error-handling and create logic for score calculation         | 30%
+2  | 1211306594 | KHAN ANAS ADNAN                            | Implement save and load for the game together with error-handling    | 30%
+3  | 1211103095 | SIDDIQ FERHAD BIN KHAIRIL ANUAL            | Implement new round, create the GUI and debug most parts of the code | 40%
 
 
 ## B. Part 1 Feature Completion (Latest)
@@ -41,7 +41,7 @@ No | Feature                                                                    
 8  | Keep the console output to facilitate checking. The data in console output and the GUI must tally.                                     |         P
 
 
-## D. Link to Part 2 GitHub Repo
+## D. Link to Part 2 Video Demo
 
-https://github.com/siddiq-ferhad/OOPDS-Assignment-Part1
+[Video Demo](https://youtu.be/ce_maPx2P1I)
 
