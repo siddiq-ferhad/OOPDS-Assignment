@@ -45,3 +45,6 @@ No | Feature                                                                    
 
 [Video Demo](https://youtu.be/ce_maPx2P1I)
 
+## E. Source Attribution
+
+Assets that I used in the game : https://chicodeza.com/freeitems/torannpu-illust.html
