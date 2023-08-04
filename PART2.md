@@ -47,4 +47,4 @@ No | Feature                                                                    
 
 ## E. Source Attribution
 
-Assets that I used in the game : https://chicodeza.com/freeitems/torannpu-illust.html
+Assets that we used in the game : https://chicodeza.com/freeitems/torannpu-illust.html
