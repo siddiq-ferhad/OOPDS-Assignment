@@ -1,4 +1,4 @@
-# Go Boom - Java Card Game
+# Go Boom
 
 Go Boom is a multiplayer card game implemented in Java. This game follows the classic *Go Boom* rules with some modifications and supports both console and GUI modes.
 
