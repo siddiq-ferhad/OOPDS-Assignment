@@ -2,6 +2,10 @@
 
 Go Boom is a multiplayer card game implemented in Java. This game follows the classic *Go Boom* rules with some modifications and supports both console and GUI modes.
 
+## 🎥 Video Demo
+- [Part 1](https://youtu.be/GyUQuptXnSE)
+- [Part 2](https://youtu.be/ce_maPx2P1I)
+
 ## 🎮 Features
 - Fully randomized **52-card deck** for each new game.
 - **Turn-based gameplay** for four players.
